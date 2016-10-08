@@ -23,6 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         item.title = "Working"
         statusItem.button?.menu?.insertItem(item, at: 0);
         eventGenerator.start()
+        
+        Sampler()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
