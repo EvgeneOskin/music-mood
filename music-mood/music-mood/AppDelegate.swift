@@ -15,16 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusItem: NSStatusItem!
     let item = NSMenuItem();
-    var eventGenerator = EventGenerator();
+    var eventGenerator: EventGenerator!
+    let sampler = Sampler();
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem.button?.title = "M"
         item.title = "Working"
         statusItem.button?.menu?.insertItem(item, at: 0);
-        eventGenerator.start()
         
-        Sampler()
+        eventGenerator = EventGenerator(block: {
+            frequency in
+            self.sampler.change(frequency: frequency);
+        })
+        eventGenerator.start()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
