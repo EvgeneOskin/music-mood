@@ -14,11 +14,14 @@ import AppKit;
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusItem: NSStatusItem!
+    let item = NSMenuItem();
     var eventGenerator = EventGenerator();
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem.button?.title = "M"
+        item.title = "Working"
+        statusItem.button?.menu?.insertItem(item, at: 0);
         eventGenerator.start()
     }
     
