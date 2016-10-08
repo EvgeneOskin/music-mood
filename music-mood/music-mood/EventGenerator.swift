@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EventGenerator.swift
 //  music-mood
 //
 //  Created by Eugene Oskin on 08.10.16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class EventGenerator {
     
     let mask = NSEventMask.keyDown
         .union(NSEventMask.keyUp)
@@ -21,9 +21,7 @@ class ViewController: NSViewController {
         .union(NSEventMask.rightMouseDragged)
         .union(NSEventMask.scrollWheel);
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func start() {
         NSEvent.addGlobalMonitorForEvents(matching: mask, handler:
             { (event: NSEvent) in self.handleEvent(event: event)}
         )
@@ -31,18 +29,10 @@ class ViewController: NSViewController {
             { (event: NSEvent) in self.handleEvent(event: event)}
         )
     }
-
+    
     func handleEvent(event: NSEvent) -> NSEvent {
         NSBeep();
         return event;
     }
     
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
-
 }
-

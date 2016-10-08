@@ -14,20 +14,16 @@ import AppKit;
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusItem: NSStatusItem!
-    var statusButton: NSStatusBarButton!
+    var eventGenerator = EventGenerator();
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        var height = NSStatusBar.system().thickness
-        statusButton = NSStatusBarButton()
-        statusButton.title = "mood"
         statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-        statusItem.button = statusButton;
+        statusItem.button?.title = "M"
+        eventGenerator.start()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
 }
 

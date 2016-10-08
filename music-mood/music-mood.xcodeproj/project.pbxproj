@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		12AA731B1DA8E3A100FC50FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA731A1DA8E3A100FC50FA /* AppDelegate.swift */; };
-		12AA731D1DA8E3A100FC50FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA731C1DA8E3A100FC50FA /* ViewController.swift */; };
 		12AA731F1DA8E3A100FC50FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12AA731E1DA8E3A100FC50FA /* Assets.xcassets */; };
 		12AA73221DA8E3A200FC50FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12AA73201DA8E3A200FC50FA /* Main.storyboard */; };
 		12AA732D1DA8E3A200FC50FA /* music_moodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA732C1DA8E3A200FC50FA /* music_moodTests.swift */; };
 		12AA73381DA8E3A200FC50FA /* music_moodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA73371DA8E3A200FC50FA /* music_moodUITests.swift */; };
+		12C396411DA9005400454507 /* EventGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C396401DA9005400454507 /* EventGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 /* Begin PBXFileReference section */
 		12AA73171DA8E3A100FC50FA /* music-mood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "music-mood.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12AA731A1DA8E3A100FC50FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		12AA731C1DA8E3A100FC50FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		12AA731E1DA8E3A100FC50FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12AA73211DA8E3A200FC50FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12AA73231DA8E3A200FC50FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		12AA73331DA8E3A200FC50FA /* music-moodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "music-moodUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12AA73371DA8E3A200FC50FA /* music_moodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = music_moodUITests.swift; sourceTree = "<group>"; };
 		12AA73391DA8E3A200FC50FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12C396401DA9005400454507 /* EventGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				12AA731A1DA8E3A100FC50FA /* AppDelegate.swift */,
-				12AA731C1DA8E3A100FC50FA /* ViewController.swift */,
 				12AA731E1DA8E3A100FC50FA /* Assets.xcassets */,
 				12AA73201DA8E3A200FC50FA /* Main.storyboard */,
 				12AA73231DA8E3A200FC50FA /* Info.plist */,
+				12C396401DA9005400454507 /* EventGenerator.swift */,
 			);
 			path = "music-mood";
 			sourceTree = "<group>";
@@ -255,8 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12AA731D1DA8E3A100FC50FA /* ViewController.swift in Sources */,
 				12AA731B1DA8E3A100FC50FA /* AppDelegate.swift in Sources */,
+				12C396411DA9005400454507 /* EventGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +496,7 @@
 				12AA733E1DA8E3A200FC50FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12AA733F1DA8E3A200FC50FA /* Build configuration list for PBXNativeTarget "music-moodTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +505,7 @@
 				12AA73411DA8E3A200FC50FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12AA73421DA8E3A200FC50FA /* Build configuration list for PBXNativeTarget "music-moodUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +514,7 @@
 				12AA73441DA8E3A200FC50FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
