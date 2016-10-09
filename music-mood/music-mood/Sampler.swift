@@ -19,13 +19,13 @@ func instrument(noteNumber: Int, rate: AKParameter, amplitude: AKParameter) -> A
 class Sampler {
     
     let generator = AKOperationGenerator() { parameters in
-        let multiply = 2
+        let multiply = parameters[0]
         
         let instrument1 = instrument(noteNumber: 60, rate: 4 * multiply, amplitude: 0.5)
-        let instrument2 = instrument(noteNumber: 62, rate: 5 * multiply, amplitude: 0.4).delay(time: 1 * multiply)
-        let instrument3 = instrument(noteNumber: 65, rate: 7 * multiply, amplitude: 1.3 / 4.0).delay(time: 5 * multiply)
-        let instrument4 = instrument(noteNumber: 67, rate: 7 * multiply, amplitude: 0.125).delay(time: 3 * multiply)
-        let chaos = AKOperation.whiteNoise() * 0.06;
+        let instrument2 = instrument(noteNumber: 62, rate: 5 * multiply, amplitude: 0.4)
+        let instrument3 = instrument(noteNumber: 65, rate: 7 * multiply, amplitude: 1.3 / 4.0)
+        let instrument4 = instrument(noteNumber: 67, rate: 7 * multiply, amplitude: 0.125)
+        let chaos = AKOperation.whiteNoise() * 0.05 / multiply;
         
         let instruments = (chaos + instrument1 + instrument2 + instrument3 + instrument4) * 0.13
         
@@ -36,15 +36,18 @@ class Sampler {
     }
     
     init() {
-        generator.parameters = [1]
-
         AudioKit.output = generator
         AudioKit.start()
         
+        reset();
         generator.start();
     }
     
     func change(frequency: Double) {
         generator.parameters[0] = frequency;
+    }
+    
+    func reset() {
+        generator.parameters[0] = 1;
     }
 }

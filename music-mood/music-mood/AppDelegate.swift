@@ -18,10 +18,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        eventGenerator = EventGenerator(block: {
-            frequency in
-            self.sampler.change(frequency: frequency);
-        })
+        eventGenerator = EventGenerator(
+            block: {frequency in self.sampler.change(frequency: frequency)},
+            reset: {self.sampler.reset()})
         eventGenerator.start()
     }
     

@@ -11,7 +11,7 @@ import Cocoa
 class EventGenerator {
     
     var timer: Timer!
-    let periodSeconds: TimeInterval = 10
+    let periodSeconds: TimeInterval = 4
     let mask = NSEventMask.keyDown
         .union(NSEventMask.keyUp)
         .union(NSEventMask.mouseMoved)
@@ -23,11 +23,13 @@ class EventGenerator {
         .union(NSEventMask.rightMouseDragged)
         .union(NSEventMask.scrollWheel);
     
-    let block: (_: Double) -> ()
+    let changeBlock: (_: Double) -> ()
+    let resetBlock: () -> ()
     let counter = Counter()
     
-    init(block: @escaping (_: Double) -> ()) {
-        self.block = block
+    init(block: @escaping (_: Double) -> (), reset: @escaping () -> ()) {
+        self.changeBlock = block
+        self.resetBlock = reset
     }
     func start() {
         NSEvent.addGlobalMonitorForEvents(matching: mask, handler:
@@ -50,8 +52,11 @@ class EventGenerator {
     
     @objc func refire() {
         if (counter.value != 0) {
-            self.block(counter.frequency)
+            self.changeBlock(counter.frequency)
+        } else {
+            self.resetBlock()
         }
+        counter.reset()
     }
 }
 
@@ -73,5 +78,11 @@ class Counter {
             firstTimestamp = timestamp
         }
         value += 1
+    }
+    
+    func reset() {
+        value = 0
+        firstTimestamp = 0;
+        lastTimestamp = 0;
     }
 }
