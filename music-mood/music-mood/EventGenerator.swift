@@ -11,7 +11,11 @@ import Cocoa
 class EventGenerator {
     
     var timer: Timer!
-    let periodSeconds: TimeInterval = 2
+    let firePeriodSeconds: TimeInterval = 2
+    
+    var resetCounterTimer: Timer!
+    let resetdSeconds: TimeInterval = 10
+    
     let mask = NSEventMask.keyDown
         .union(NSEventMask.keyUp)
         .union(NSEventMask.mouseMoved)
@@ -39,50 +43,56 @@ class EventGenerator {
             { (event: NSEvent) in self.handleEvent(event: event)}
         )
         timer = Timer.scheduledTimer(
-            timeInterval: periodSeconds,
+            timeInterval: firePeriodSeconds,
             target: self, selector: #selector(refire),
+            userInfo: nil, repeats: true
+        )
+        resetCounterTimer = Timer.scheduledTimer(
+            timeInterval: resetdSeconds,
+            target: self, selector: #selector(reset),
             userInfo: nil, repeats: true
         )
     }
     
     func handleEvent(event: NSEvent) -> NSEvent {
-        counter.add(timestamp: event.timestamp);
+        counter.add();
         return event;
     }
     
     @objc func refire() {
+        counter.tick(deltaSeconds: firePeriodSeconds)
         if (counter.value != 0) {
             self.changeBlock(counter.frequency)
         } else {
             self.resetBlock()
         }
+    }
+    
+    @objc func reset(){
         counter.reset()
     }
 }
 
 class Counter {
     var value: Double = 0;
-    var firstTimestamp: Double = 0;
-    var lastTimestamp: Double = 0;
+    var elapsedSeconds: Double = 0;
     
     var frequency : Double {
         get {
-            return value / (lastTimestamp - firstTimestamp)
+            return value / elapsedSeconds
         }
     }
     
-    func add(timestamp: Double) {
-        if (value != 0) {
-            lastTimestamp = timestamp
-        } else {
-            firstTimestamp = timestamp
-        }
+    func add() {
         value += 1
+    }
+    func tick(deltaSeconds: Double) {
+        elapsedSeconds += deltaSeconds
     }
     
     func reset() {
         value = 0
-        firstTimestamp = 0;
-        lastTimestamp = 0;
+        elapsedSeconds = 0;
     }
+    
 }
