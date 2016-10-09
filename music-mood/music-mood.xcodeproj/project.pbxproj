@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1295896A1DAA22CC00F6B1CD /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129589691DAA22CC00F6B1CD /* PreferencesViewController.swift */; };
+		1295896C1DAA3A5100F6B1CD /* cafe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295896B1DAA3A5100F6B1CD /* cafe.mp3 */; };
+		1295896E1DAA3A5B00F6B1CD /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295896D1DAA3A5B00F6B1CD /* rain.mp3 */; };
 		12AA731B1DA8E3A100FC50FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA731A1DA8E3A100FC50FA /* AppDelegate.swift */; };
 		12AA731F1DA8E3A100FC50FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12AA731E1DA8E3A100FC50FA /* Assets.xcassets */; };
 		12AA73221DA8E3A200FC50FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12AA73201DA8E3A200FC50FA /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		129589691DAA22CC00F6B1CD /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		1295896B1DAA3A5100F6B1CD /* cafe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cafe.mp3; path = ../../cafe.mp3; sourceTree = "<group>"; };
+		1295896D1DAA3A5B00F6B1CD /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rain.mp3; path = ../../rain.mp3; sourceTree = "<group>"; };
 		12AA73171DA8E3A100FC50FA /* music-mood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "music-mood.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12AA731A1DA8E3A100FC50FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12AA731E1DA8E3A100FC50FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,12 +111,15 @@
 		12AA73191DA8E3A100FC50FA /* music-mood */ = {
 			isa = PBXGroup;
 			children = (
+				1295896B1DAA3A5100F6B1CD /* cafe.mp3 */,
+				1295896D1DAA3A5B00F6B1CD /* rain.mp3 */,
 				12AA731A1DA8E3A100FC50FA /* AppDelegate.swift */,
 				12AA731E1DA8E3A100FC50FA /* Assets.xcassets */,
 				12AA73201DA8E3A200FC50FA /* Main.storyboard */,
 				12AA73231DA8E3A200FC50FA /* Info.plist */,
 				12C396401DA9005400454507 /* EventGenerator.swift */,
 				12C396451DA90D8100454507 /* Sampler.swift */,
+				129589691DAA22CC00F6B1CD /* PreferencesViewController.swift */,
 			);
 			path = "music-mood";
 			sourceTree = "<group>";
@@ -270,8 +279,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1295896E1DAA3A5B00F6B1CD /* rain.mp3 in Resources */,
 				12AA731F1DA8E3A100FC50FA /* Assets.xcassets in Resources */,
 				12AA73221DA8E3A200FC50FA /* Main.storyboard in Resources */,
+				1295896C1DAA3A5100F6B1CD /* cafe.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +448,7 @@
 				12AA731B1DA8E3A100FC50FA /* AppDelegate.swift in Sources */,
 				12C396411DA9005400454507 /* EventGenerator.swift in Sources */,
 				12C396461DA90D8100454507 /* Sampler.swift in Sources */,
+				1295896A1DAA22CC00F6B1CD /* PreferencesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
