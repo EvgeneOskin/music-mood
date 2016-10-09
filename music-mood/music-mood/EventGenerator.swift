@@ -11,7 +11,7 @@ import Cocoa
 class EventGenerator {
     
     var timer: Timer!
-    let periodSeconds: TimeInterval = 4
+    let periodSeconds: TimeInterval = 2
     let mask = NSEventMask.keyDown
         .union(NSEventMask.keyUp)
         .union(NSEventMask.mouseMoved)

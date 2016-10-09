@@ -14,14 +14,18 @@ import AppKit;
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var eventGenerator: EventGenerator!
-    let sampler = Sampler();
+    var sampler: Sampler!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+        loadSampler()
         eventGenerator = EventGenerator(
             block: {frequency in self.sampler.change(frequency: frequency)},
             reset: {self.sampler.reset()})
         eventGenerator.start()
+    }
+    
+    func loadSampler() {
+        sampler = Sampler();
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

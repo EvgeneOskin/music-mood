@@ -8,7 +8,7 @@ target 'music-mood' do
   use_frameworks!
 
   # Pods for music-mood
-  pod 'AudioKit', '~> 3.4'
+  pod 'AudioKit'
 
   target 'music-moodTests' do
     inherit! :search_paths
