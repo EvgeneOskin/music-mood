@@ -10,12 +10,34 @@ import Foundation
 import AudioKit
 
 
-func resourcePlayer(resource: String) -> AKAudioPlayer {
-    let fileUrl = Bundle.main.resourcePath
-    let file = try! AKAudioFile(readFileName: resource, baseDir: AKAudioFile.BaseDirectory.resources)
+func resourcePlayer(_ resource: String) -> AKAudioPlayer {
+    let file = try! AKAudioFile(
+        readFileName: resource,
+        baseDir: AKAudioFile.BaseDirectory.resources
+    )
     let player  = try! AKAudioPlayer(file: file)
     player.looping  = true
     return player
+}
+
+func filePlayer(_ path: String) throws -> AKAudioPlayer  {
+    let pathURL = URL(fileURLWithPath: path, isDirectory: false)
+    let file = try AKAudioFile(forReading: pathURL)
+    let player  = try AKAudioPlayer(file: file)
+    player.looping  = true
+    return player
+}
+
+func loadFilePlayer(_ path: String? = nil, fallbackResource: String) -> AKAudioPlayer {
+    do {
+        if path != nil {
+            return try filePlayer(path!)
+        } else {
+            return resourcePlayer(fallbackResource)
+        }
+    } catch {
+        return resourcePlayer(fallbackResource)
+    }
 }
 
 class Sampler {
@@ -30,10 +52,11 @@ class Sampler {
         return exp(-pow(frequency - 50, 2) / 50);
     }
     
-    init() {
-        cooldown = resourcePlayer(resource: cooldownResource)
-        warmup = resourcePlayer(resource: warmupResource)
-        mix =  AKMixer(cooldown, warmup)
+    init(warmupPath: String? = nil, cooldownPath: String? = nil) {
+        warmup = loadFilePlayer(warmupPath, fallbackResource: warmupResource)
+        cooldown = loadFilePlayer(cooldownPath, fallbackResource: cooldownResource)
+        
+        mix = AKMixer(cooldown, warmup)
         
         AudioKit.output = mix
         AudioKit.start()
