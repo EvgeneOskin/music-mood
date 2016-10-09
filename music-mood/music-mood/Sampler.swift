@@ -49,7 +49,7 @@ class Sampler {
     let cooldownResource = "rain.mp3"
 
     func modeScaleToFrequence(_ frequency: Double) -> Double {
-        return exp(-pow(frequency - 50, 2) / 50);
+        return exp(-pow(frequency / 30, 2));
     }
     
     init(warmupPath: String? = nil, cooldownPath: String? = nil) {
@@ -68,13 +68,12 @@ class Sampler {
     
     func change(frequency: Double) {
         let mode = modeScaleToFrequence(frequency);
-        warmup.volume = 1 - mode;
-        cooldown.volume = mode;
+        cooldown.volume = 1 - mode;
+        warmup.volume = mode;
     }
     
     func reset() {
-        warmup.volume = 1;
-        cooldown.volume = 0;
+        change(frequency: 0)
     }
     
     func setupTrack() {
