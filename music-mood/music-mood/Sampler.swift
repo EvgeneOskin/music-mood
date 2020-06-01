@@ -59,7 +59,7 @@ class Sampler {
         mix = AKMixer(cooldown, warmup)
         
         AudioKit.output = mix
-        AudioKit.start()
+        try! AudioKit.start()
         
         reset();
         cooldown.start();
