@@ -9,5 +9,5 @@ target 'music-mood' do
   use_frameworks!
 
   # Pods for music-mood
-  pod 'AudioKit/Core'
+  pod 'SwiftySound', '1.2.0'
 end

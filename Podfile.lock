@@ -1,16 +1,16 @@
 PODS:
-  - AudioKit/Core (4.10)
+  - SwiftySound (1.2.0)
 
 DEPENDENCIES:
-  - AudioKit/Core
+  - SwiftySound (= 1.2.0)
 
 SPEC REPOS:
   trunk:
-    - AudioKit
+    - SwiftySound
 
 SPEC CHECKSUMS:
-  AudioKit: 37d31154cf4708146964f8eee757b1af732bd15e
+  SwiftySound: 9eb28bb14edb601b40027e44319e0ef8383f88bf
 
-PODFILE CHECKSUM: 2ae78b233a1c8d9355cad145d715416880f7ff06
+PODFILE CHECKSUM: 1bd7c156a67aeeee5c8b8266d8bf1d4bf1d9c772
 
 COCOAPODS: 1.9.3

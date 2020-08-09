@@ -7,67 +7,33 @@
 //
 
 import Foundation
-import AudioKit
-
-
-func resourcePlayer(_ resource: String) -> AKAudioPlayer {
-    let file = try! AKAudioFile(
-        readFileName: resource,
-        baseDir: AKAudioFile.BaseDirectory.resources
-    )
-    let player  = try! AKAudioPlayer(file: file)
-    player.looping  = true
-    return player
-}
-
-func filePlayer(_ path: String) throws -> AKAudioPlayer  {
-    let pathURL = URL(fileURLWithPath: path, isDirectory: false)
-    let file = try AKAudioFile(forReading: pathURL)
-    let player  = try AKAudioPlayer(file: file)
-    player.looping  = true
-    return player
-}
-
-func loadFilePlayer(_ path: String? = nil, fallbackResource: String) -> AKAudioPlayer {
-    do {
-        if path != nil {
-            return try filePlayer(path!)
-        } else {
-            return resourcePlayer(fallbackResource)
-        }
-    } catch {
-        return resourcePlayer(fallbackResource)
-    }
-}
+import SwiftySound
 
 class Sampler {
-    var mix: AKMixer!
-    var cooldown: AKAudioPlayer!
-    var warmup: AKAudioPlayer!
+    var cooldown: Sound!
+    var warmup: Sound!
     
     let warmupResource = "cafe.mp3"
     let cooldownResource = "rain.mp3"
 
-    func modeScaleToFrequence(_ frequency: Double) -> Double {
-        return exp(-pow(frequency / 30, 2));
+    func modeScaleToFrequence(_ frequency: Float) -> Float {
+        return exp(-pow(frequency / 50, 2));
     }
     
     init(warmupPath: String? = nil, cooldownPath: String? = nil) {
-        warmup = loadFilePlayer(warmupPath, fallbackResource: warmupResource)
-        cooldown = loadFilePlayer(cooldownPath, fallbackResource: cooldownResource)
+        guard let warmpupURL = Bundle.main.url(forResource: "cafe", withExtension: "mp3"),
+            let cooldownURL = Bundle.main.url(forResource: "rain", withExtension: "mp3") else {
+                return
+        }
+        warmup = Sound(url: warmpupURL)
+        cooldown = Sound(url: cooldownURL)
         
-        mix = AKMixer(cooldown, warmup)
-        
-        AudioKit.output = mix
-        try! AudioKit.start()
-        
-        reset();
-        cooldown.start();
-        warmup.start();
+        warmup.play(numberOfLoops: -1)
+        cooldown.play(numberOfLoops: -1)
     }
     
     func change(frequency: Double) {
-        let mode = modeScaleToFrequence(frequency);
+        let mode = modeScaleToFrequence(Float(frequency));
         cooldown.volume = 1 - mode;
         warmup.volume = mode;
     }
