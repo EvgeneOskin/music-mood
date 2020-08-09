@@ -19,10 +19,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         updateFrequency(0)
         
-        loadSampler()
+        sampler = Sampler();
         eventGenerator = EventGenerator(
             block: {
                 frequency in
@@ -37,9 +37,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventGenerator.start()
     }
     
-    func loadSampler() {
-        sampler = Sampler();
-    }
     func updateFrequency(_ frequency: Double) {
         statusItem.button?.title = String(format: "M %.0f", frequency)
     }

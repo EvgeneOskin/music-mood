@@ -16,16 +16,16 @@ class EventGenerator {
     var resetCounterTimer: Timer!
     let resetdSeconds: TimeInterval = 10
     
-    let mask = NSEventMask.keyDown
-        .union(NSEventMask.keyUp)
-        .union(NSEventMask.mouseMoved)
-        .union(NSEventMask.leftMouseDown)
-        .union(NSEventMask.leftMouseUp)
-        .union(NSEventMask.leftMouseDragged)
-        .union(NSEventMask.rightMouseDown)
-        .union(NSEventMask.rightMouseUp)
-        .union(NSEventMask.rightMouseDragged)
-        .union(NSEventMask.scrollWheel);
+    let mask = NSEvent.EventTypeMask.keyDown
+        .union(NSEvent.EventTypeMask.keyUp)
+        .union(NSEvent.EventTypeMask.mouseMoved)
+        .union(NSEvent.EventTypeMask.leftMouseDown)
+        .union(NSEvent.EventTypeMask.leftMouseUp)
+        .union(NSEvent.EventTypeMask.leftMouseDragged)
+        .union(NSEvent.EventTypeMask.rightMouseDown)
+        .union(NSEvent.EventTypeMask.rightMouseUp)
+        .union(NSEvent.EventTypeMask.rightMouseDragged)
+        .union(NSEvent.EventTypeMask.scrollWheel);
     
     let changeBlock: (_: Double) -> ()
     let resetBlock: () -> ()
@@ -36,12 +36,11 @@ class EventGenerator {
         self.resetBlock = reset
     }
     func start() {
-        NSEvent.addGlobalMonitorForEvents(matching: mask, handler:
+        NSEvent.addGlobalMonitorForEvents(matching: mask)
             { (event: NSEvent) in self.handleEvent(event: event)}
-        )
-        NSEvent.addLocalMonitorForEvents(matching: mask, handler:
+        NSEvent.addLocalMonitorForEvents(matching: mask)
             { (event: NSEvent) in self.handleEvent(event: event)}
-        )
+        
         timer = Timer.scheduledTimer(
             timeInterval: firePeriodSeconds,
             target: self, selector: #selector(refire),
